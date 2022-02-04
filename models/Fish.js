@@ -24,6 +24,8 @@ const Fish = mongoose.Schema({
     minGH: Number,
     maxGH: Number,
     perGallon: Number,
+    minSize: Number,
+    maxSize: Number,
     isLivebearer: {
         type: Boolean,
         default: false

@@ -6,7 +6,8 @@ const dotenv = require("dotenv");
 
 dotenv.config({ path: "./config/config.env" });
 
-
+const { read, write } = require("./utils/excel");
+const Fish = require("./models/Fish");
 
 //import models
 // EX: const Aquarium = require("./models/Aquarium");
@@ -51,10 +52,21 @@ const conn = mongoose.connect(process.env.MONGO_URI, {
 // };
 
 const importData = async () => {
+    if (!process.argv[3]) {
+        console.log({ error: "please provide a file name to read" })
+    }
     try {
-
+        const data = read(process.argv[3], "fish")
+        console.log(`adding entries for "fish"`)
+        console.log(data)
+        await Fish.create(data)
+        console.log("done getting fish")
+        console.log("done importing data")
+        setTimeout(() => console.log("exiting...", 200))
+        process.exit();
     } catch (error) {
-
+        console.log(error)
+        process.exit();
     }
 }
 
@@ -79,7 +91,8 @@ const importData = async () => {
 
 const deleteData = async () => {
     try {
-
+        await Fish.deleteMany()
+        process.exit();
     } catch (error) {
 
     }
