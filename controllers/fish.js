@@ -8,9 +8,7 @@ exports.addFish = asyncHandler(async (req, res, next) => {
 })
 
 exports.getAllFish = asyncHandler(async (req, res, next) => {
-     const query = {}
-     const allFish = await Fish.find(query);
-     res.json({ success: true, data: allFish })
+     res.status(200).json(res.advancedResults)
 })
 
 exports.editFish = asyncHandler(async (req, res, next) => {

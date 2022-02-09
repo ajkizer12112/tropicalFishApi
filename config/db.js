@@ -11,4 +11,8 @@ const connectDB = async () => {
     console.log(`mongodb connect: ${conn.connection.host}`);
 };
 
-module.exports = connectDB;
+
+const close = () => {
+    return mongoose.disconnect();
+}
+module.exports = { connectDB, close };

@@ -1,35 +1,28 @@
 const mongoose = require('mongoose')
 
 const Fish = mongoose.Schema({
-    name: {
+    commonName: {
         type: String,
         required: [true, "name is required"]
     },
-    scientificName: {
-        type: String,
-        required: [true, "scientific name is required"]
-    },
+    scientificName: String,
+    family: String,
+    origin: [String],
+    temperment: String,
+    tankArea: String,
+    minTankSize: Number,
+    diet: String,
+    breeding: String,
+    care: String,
+    phRange: [Number],
+    hardnessRange: [Number],
+    temperatureRange: [Number],
+    lifespanRange: [Number],
     description: {
         type: String,
-        required: [true, "description is required"]
+        maxLength: 1000
     },
-    tempMin: Number,
-    tempMax: Number,
-    minLifespan: Number,
-    maxLifespan: Number,
-    minpH: Number,
-    maxpH: Number,
-    minKH: Number,
-    maxKH: Number,
-    minGH: Number,
-    maxGH: Number,
-    perGallon: Number,
-    minSize: Number,
-    maxSize: Number,
-    isLivebearer: {
-        type: Boolean,
-        default: false
-    }
+    source: String
 })
 
 module.exports = mongoose.model("Fish", Fish)

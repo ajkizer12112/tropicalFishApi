@@ -5,7 +5,6 @@ const advancedResults = (model, populate) => async (req, res, next) => {
 
   const reqQuery = { ...req.query };
 
-  console.log({ reqQuery });
 
   //Fields to exclude
   const removeFields = ["select", "sort", "page", "limit"];
@@ -20,11 +19,11 @@ const advancedResults = (model, populate) => async (req, res, next) => {
     (match) => `$${match}`
   );
 
-    query = model.find({
-      user: req.user.id,
-      ...JSON.parse(queryStr),
-    });
- 
+  console.log({ queryStr })
+  query = model.find({
+    ...JSON.parse(queryStr),
+  });
+
   //select fields
   if (req.query.select) {
     const fields = req.query.select.split(",").join(" ");

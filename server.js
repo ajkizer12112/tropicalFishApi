@@ -9,7 +9,7 @@ const hpp = require("hpp");
 const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const errorHandler = require("./middleware/error");
-const connectDB = require("./config/db");
+const { connectDB, close } = require("./config/db");
 dotenv.config({ path: "./config/config.env" });
 
 connectDB();
@@ -72,3 +72,6 @@ process.on("unHandledRejection", (err, promise) => {
 
     server.close(() => process.exit(1));
 });
+
+
+module.exports = server

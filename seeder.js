@@ -46,7 +46,7 @@ const conn = mongoose.connect(process.env.MONGO_URI, {
 //     await Plant.create(plants);
 //     console.log("Data imported...");
 //     process.exit();
-//   } catch (error) {
+//   } catch (error) 
 //     console.error(error);
 //   }
 // };
@@ -94,7 +94,7 @@ const deleteData = async () => {
         await Fish.deleteMany()
         process.exit();
     } catch (error) {
-
+        console.log(error)
     }
 }
 

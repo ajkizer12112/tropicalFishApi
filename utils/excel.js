@@ -7,7 +7,21 @@ const read = (filename, entity) => {
     const sheets = file.SheetNames
     if (!sheets.includes(entity)) return "Error: Entity does not exist"
     const data = reader.utils.sheet_to_json(file.Sheets[entity])
-    return data
+
+
+
+
+    let rtnVal = data
+
+    rtnVal.forEach(item => {
+        item.origin = item.origin.split(",")
+        item.phRange = item.phRange.split(",").map(item => parseFloat(item, 10))
+        item.hardnessRange = item.hardnessRange.split(",").map(item => parseInt(item, 10))
+        item.temperatureRange = item.temperatureRange.split(",").map(item => parseInt(item, 10))
+        item.lifespanRange = item.lifespanRange.split(",").map(item => parseInt(item, 10))
+    })
+
+    return rtnVal
 }
 
 const write = (filename, entity, data) => {
